@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<link rel="stylesheet" href="../public/stylesheets/style.css">
+
+
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Input Form -->
+        <div class="max-w-2xl mx-auto mb-12">
+            <div class="bg-gray-800 rounded-lg shadow-xl p-6">
+                <h3 class="text-2xl font-bold mb-6 text-gray-100">Create New Note</h3>
+                <form action="/create" method="POST">
+                    <div class="mb-6">
+                        <label for="title" class="block text-sm font-medium text-gray-300 mb-2">Title</label>
+                        <input type="text"
+                            class="w-full bg-gray-700 border border-gray-600 rounded-lg py-2 px-4 text-gray-100 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                            id="title" name="title" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="content" class="block text-sm font-medium text-gray-300 mb-2">Note Content</label>
+                        <textarea
+                            class="w-full bg-gray-700 border border-gray-600 rounded-lg py-2 px-4 text-gray-100 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                            id="content" name="content" rows="4" required></textarea>
+                    </div>
+                    <button type="submit"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-200 ease-in-out transform hover:scale-105">
+                        Save Note
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Display Notes -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Using EJS to loop through dummy data -->
+
+
+           
+
+                <% if(files.length> 0) { %>
+
+                    <% files.forEach(function(val){%>
+
+ <div class="bg-gray-800 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
+
+                        <div class="p-6">
+                            <h5 class="text-xl font-semibold mb-3 text-gray-100"><%=val.split('.')[0]%></h5>
+                            <p class="text-gray-300 mb-4">content</p>
+                            <div class="flex items-center justify-between">
+                                <small class="text-gray-400">Created on:10/11/24</small>
+                                <div class="flex space-x-2">
+                                    <button class="text-blue-400 hover:text-blue-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                    </svg>
+                                </button>
+                                <button class="text-red-400 hover:text-red-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+            <% } else { %>
+                <div class="p-6">
+                    <h5 class="text-xl font-semibold mb-3 text-gray-100">No Notes Found</h5>
+                    <p class="text-gray-300 mb-4">Create a new note to get started</p>
+                </div>
+            <% } %>
+
+            </div>
+        </div>
+
+        <script src="../public/javascripts/script.js"></script>
+</body>
+
+</html>
