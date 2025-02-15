@@ -33,4 +33,36 @@ app.post('/create', (req, res) => {
     })
 });
 
+app.get('/file/:filename', (req, res) => {
+    fs.readFile(`./notes/${req.params.filename}`, 'utf8', (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.render("show", {title: req.params.filename, content: data});
+        }
+    });
+});
+
+app.get('/edit/:filename', (req, res) => {
+   res.render("edit", {title: req.params.filename});
+});
+
+app.post('/edit/:filename', (req, res) => {
+   fs.rename(`./notes/${req.params.filename}`, `./notes/${req.body.newname}.txt`, (err) => {
+         if(err){
+              console.log(err);
+         }
+         else{
+            console.log("File renamed successfully");
+         }
+});
+res.redirect('/');
+
+});
+
+
+
+
+
 app.listen(3000);

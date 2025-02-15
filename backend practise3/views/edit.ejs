@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<link rel="stylesheet" href="../public/stylesheets/style.css">
+
+
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+   
+        <!-- Input Form -->
+        <div class="max-w-2xl mx-auto mb-12">
+            <div class="bg-gray-800 rounded-lg shadow-xl p-6">
+                <h3 class="text-2xl font-bold mb-6 text-gray-100">Rename</h3>
+                <form action="/edit/<%=title%>" method="POST">
+                    <div class="mb-6">
+                        <label for="title" class="block text-sm font-medium text-gray-300 mb-2">Previous name</label>
+                        <input type="text"
+                            class="w-full bg-gray-700 border border-gray-600 rounded-lg py-2 px-4 text-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                            id="previousname" name="previousname" value="<%=title%>" disabled="true">
+                    </div>
+                    <div class="mb-6">
+                        <label for="content" class="block text-sm font-medium text-gray-300 mb-2">New name</label>
+                        <input type="text"
+                        class="w-full bg-gray-700 border border-gray-600 rounded-lg py-2 px-4 text-gray-100 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                        id="newname" name="newname" required>
+                       
+                    </div>
+                    <button type="submit"
+                        class="bg-yellow-600 hover:bg-yellow-700 text-white font-medium py-2 px-6 rounded-lg transition duration-200 ease-in-out transform hover:scale-105">
+                        Save Note
+                    </button>
+                </form>
+            </div>
+        </div>
+
+     
+
+        <script src="../public/javascripts/script.js"></script>
+</body>
+
+</html>
