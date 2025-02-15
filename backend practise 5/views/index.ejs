@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <link rel="stylesheet" href="/backend practise 5/public/stylesheets/style.css">
+</head>
+<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+<body>
+<nav class="bg-gray-800 p-4">
+    <ul class="flex space-x-4">
+        <li><a href="/readuser" class="text-white">Read User</a></li>
+    </ul>
+</nav>
+
+<h1 class="text-3xl font-bold mb-4">Create User</h1>
+<div class="h-screen w-full text-white bg-zinc-900 flex items-center justify-center">
+    <form action="/create" method="POST" class="flex space-x-4">
+        <input type="text" name="name" placeholder="Name" class="bg-transparent border rounded-full px-4 py-2 focus:outline-none" >
+        <input type="email" name="email" placeholder="Email" class="bg-transparent border rounded-full px-4 py-2 focus:outline-none" >
+        <input type="text"  placeholder="Image URL" class="bg-transparent border rounded-full px-4 py-2 focus:outline-none" name="img">
+        <button type="submit" class="bg-blue-500 text-white rounded-full px-4 py-2">Create User</button>
+    </form>
+</div>
+    <script src="/javascripts/script.js"></script>
+</body>
+</html>
