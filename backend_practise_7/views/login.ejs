@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>authentication and authorization</title>
+
+<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body>
+   
+    
+    <div class="w-full h-screen bg-zinc-900 flex items-center justify-center">
+        <form class="bg-zinc-800 p-8 rounded-lg shadow-md w-full max-w-sm" action="/login" method="post">
+            <h2 class="text-white text-2xl mb-6 text-center">Login</h2>
+            <div class="mb-4">
+                <label class="block text-white text-sm font-bold mb-2" for="username">Username</label>
+                <input class="w-full p-2 rounded bg-zinc-700 text-white" type="text" id="username" name="email" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-white text-sm font-bold mb-2" for="password">Password</label>
+                <input class="w-full p-2 rounded bg-zinc-700 text-white" type="password" id="password" name="password" required>
+            </div>
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
