@@ -8,6 +8,7 @@ const post = require("./models/post");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+
 app.use(cookieParser());
 app.use(express.static("public"));
 
@@ -68,9 +69,78 @@ app.get("/logout", async(req, res) => {
 });
 app.get("/profile",isLoggedIn, async(req, res) => {
  
-    let user= await User.findOne({email:req.email});
- 
+    let user= await User.findOne({email:req.email}).populate("posts");
+    // res.send(user);
+   
     res.render("profile",{user});
+
+});
+
+
+app.get("/delete-post/:id",isLoggedIn, async(req, res) => {
+ 
+    let user= await User.findOne({email:req.email});
+    let currentpost= await post.findOne({_id:req.params.id});
+    user.posts.splice(user.posts.indexOf(currentpost._id),1);
+    await user.save();
+    await post.deleteOne({_id:req.params.id});
+    res.redirect("/profile");
+
+});
+
+
+app.get("/edit-post/:id",isLoggedIn, async(req, res) => {
+    let currentpost= await post.findOne({_id:req.params.id});
+    
+ 
+    res.render("edit-post",{currentpost});
+
+});
+app.post("/edit-post/:id",isLoggedIn, async(req, res) => {
+    
+    let currentpost= await post.findOne({_id:req.params.id});
+    console.log(currentpost);
+    
+    currentpost.content=req.body.editedContent;
+    await currentpost.save();
+    res.redirect("/profile");
+
+});
+
+
+app.get("/like-post/:id",isLoggedIn, async(req, res) => {
+        let currentpost = await post.findOne({ _id: req.params.id });
+        let user = await User.findOne({ email: req.email });
+        if(currentpost.likes.indexOf(user._id)===-1){
+            currentpost.likes.push(user._id);
+            await currentpost.save();
+        }
+
+        else{
+            currentpost.likes.splice(currentpost.likes.indexOf(user._id),1);
+            await currentpost.save();
+        }
+        res.redirect("/profile");
+
+
+   
+ 
+
+});
+
+
+app.post("/create-post",isLoggedIn, async(req, res) => {
+ 
+   let user = await User.findOne({email:req.email});
+   let {content}=req.body;
+    let newPost= await post.create({
+      
+         content:content,
+         user:user._id
+    });
+    user.posts.push(newPost._id);
+    await user.save();
+    res.redirect("/profile");
 
 });
 
